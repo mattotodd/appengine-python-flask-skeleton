@@ -10,7 +10,7 @@
 3. Install the [App Engine Python SDK](https://developers.google.com/appengine/downloads).
 See the README file for directions. 
 
-4. Go to [https://console.developers.google.com/project](appengine.google.com) (sign up if need be) and create an new project. The id you give the project will be the your subdomain and application id. example:  your-app-id becomes your-app-id.appspot.com
+4. Go to [appengine.google.com](https://console.developers.google.com/project) (sign up if need be) and create an new project. The id you give the project will be the your subdomain and application id. example:  your-app-id becomes your-app-id.appspot.com
 
 4. Clone this repo with
 
@@ -71,6 +71,8 @@ To learn more read about the [template language](http://jinja.pocoo.org/docs/dev
 
 ### AppEngine
 Within the [Python Runtime](https://cloud.google.com/appengine/docs/python) there are a bunch of [services](https://cloud.google.com/appengine/docs/python/apis) you can take advantage of like identity, mail, memcache, search, sms, queues etc etc.
+
+To then manage the prod version of this app, visit [appengine.google.com](https://appengine.google.com)
 
 
 This skeleton includes `TODO` markers to help you find basic areas you will want
