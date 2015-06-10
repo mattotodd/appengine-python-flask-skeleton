@@ -1,29 +1,30 @@
 ## Python Flask Skeleton for Google App Engine
 
-A skeleton for building Python applications on Google App Engine with the
-[Flask micro framework](http://flask.pocoo.org).
+## To Run Locally
+1. If you dont already have  it, install [python 2.7](https://www.python.org/download/releases/2.7/)
 
-See our other [Google Cloud Platform github
-repos](https://github.com/GoogleCloudPlatform) for sample applications and
-scaffolding for other python frameworks and use cases.
+2. You'll also want the package manager pip.  To get it, download [get-pip.py](https://bootstrap.pypa.io/get-pip.py) and then in the directory where it is run:
+   ```
+   python get-pip.py
+   ```
+3. Install the [App Engine Python SDK](https://developers.google.com/appengine/downloads).
+See the README file for directions. 
 
-## Run Locally
-1. Install the [App Engine Python SDK](https://developers.google.com/appengine/downloads).
-See the README file for directions. You'll need python 2.7 and [pip 1.4 or later](http://www.pip-installer.org/en/latest/installing.html) installed too.
+4. Go to [https://console.developers.google.com/project](appengine.google.com) (sign up if need be) and create an new project. The id you give the project will be the your subdomain and application id. example:  your-app-id becomes your-app-id.appspot.com
 
-2. Clone this repo with
+4. Clone this repo with
 
    ```
    git clone https://github.com/GoogleCloudPlatform/appengine-python-flask-skeleton.git
    ```
-3. Install dependencies in the project's lib directory.
+5. Install dependencies in the project's lib directory. Only current lib we are including here is Flask (more below)
    Note: App Engine can only import libraries from inside your project directory.
 
    ```
    cd appengine-python-flask-skeleton
    pip install -r requirements.txt -t lib
    ```
-4. Run this project locally from the command line:
+6. Run this project locally from the command line:
 
    ```
    dev_appserver.py .
@@ -37,9 +38,9 @@ for options when running dev_appserver.
 ## Deploy
 To deploy the application:
 
-1. Use the [Admin Console](https://appengine.google.com) to create a
-   project/app id. (App id and project id are identical)
-1. [Deploy the
+1. Edit the app.yaml file and set your-application-id-here to your app id
+
+2. [Deploy the
    application](https://developers.google.com/appengine/docs/python/tools/uploadinganapp) with
 
    ```
@@ -48,6 +49,30 @@ To deploy the application:
 1. Congratulations!  Your application is now live at your-app-id.appspot.com
 
 ## Next Steps
+
+### app.yaml
+
+The [app.yaml](https://cloud.google.com/appengine/docs/python/config/appconfig) file is where you configure your application for appengine. For this app, we are setting the runtime to python27.
+
+Also in the app.yaml file we set two handlers, /static  which will deliver any static files you put in those folders (like /static/js/react.js)
+
+the second handler catches all other requests and sends them off to our python flask application in main.py, basically the place where out python code takes over.
+
+
+### Flask
+[Flask](http://flask.pocoo.org/) is a microframework for python. Read [the Quickstart guide](http://flask.pocoo.org/docs/0.10/quickstart/#quickstart) to find out more about it. You can kind of ignore everything up to the [routing section](http://flask.pocoo.org/docs/0.10/quickstart/#routing) since appengine handles running the app for you. Other than that, the docs are pretty good.
+
+Long story short, you use a python attribute `@app.route('/hello')` to decorate functions and they become your web request handlers.
+
+### Jinja
+[Jinja](http://jinja.pocoo.org/) is a python template engine for generating html. You can use Flask's built in method [render_template](http://flask.pocoo.org/docs/0.10/api/#flask.render_template) to render files inside the /templates folder (it uses jinja by default).
+
+To learn more read about the [template language](http://jinja.pocoo.org/docs/dev/templates/)
+
+### AppEngine
+Within the [Python Runtime](https://cloud.google.com/appengine/docs/python) there are a bunch of [services](https://cloud.google.com/appengine/docs/python/apis) you can take advantage of like identity, mail, memcache, search, sms, queues etc etc.
+
+
 This skeleton includes `TODO` markers to help you find basic areas you will want
 to customize.
 
